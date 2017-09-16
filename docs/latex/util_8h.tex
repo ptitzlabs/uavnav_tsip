@@ -1,0 +1,137 @@
+\hypertarget{util_8h}{}\section{util.\+h File Reference}
+\label{util_8h}\index{util.\+h@{util.\+h}}
+
+
+Header containing the utility functions. Various utility functions, including the C\+RC checker.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for util.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=128pt]{util_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{util_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{util_8h_affe776513b24d84b39af8ab0930fef7f}{max}(a,  b)
+\item 
+\#define \hyperlink{util_8h_ac6afabdc09a49a433ee19d8a9486056d}{min}(a,  b)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{util_8h_aa1921745f0c9cd9f201d624ca86dc40b}{crc32} (const uint8\+\_\+t $\ast$buf, const uint32\+\_\+t start, const uint32\+\_\+t end)
+\begin{DoxyCompactList}\small\item\em C\+RC calculation for T\+S\+IP packets. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{util_8h_ad96587305bb46bd47c2069e0aafd6530}{arr\+\_\+to\+\_\+int} (const uint8\+\_\+t $\ast$in, const uint32\+\_\+t n\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Convert an array of bytes into an integer for C\+RC check. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \hyperlink{util_8h_aaf584663e7fa9218e6f9f515ff41c6e4}{crc32\+\_\+table} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table of constants used for C\+RC calculation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header containing the utility functions. Various utility functions, including the C\+RC checker. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{util_8h_affe776513b24d84b39af8ab0930fef7f}\label{util_8h_affe776513b24d84b39af8ab0930fef7f}} 
+\index{util.\+h@{util.\+h}!max@{max}}
+\index{max@{max}!util.\+h@{util.\+h}}
+\subsubsection{\texorpdfstring{max}{max}}
+{\footnotesize\ttfamily \#define max(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                                                           \(\backslash\)
+    \_\_typeof\_\_(a) \_a = (a);                                                    \(\backslash\)
+    \_\_typeof\_\_(b) \_b = (b);                                                    \(\backslash\)
+    \_a > \_b ? \_a : \_b;                                                         \(\backslash\)
+  \})
+\end{DoxyCode}
+\mbox{\Hypertarget{util_8h_ac6afabdc09a49a433ee19d8a9486056d}\label{util_8h_ac6afabdc09a49a433ee19d8a9486056d}} 
+\index{util.\+h@{util.\+h}!min@{min}}
+\index{min@{min}!util.\+h@{util.\+h}}
+\subsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+(\{                                                                           \(\backslash\)
+    \_\_typeof\_\_(a) \_a = (a);                                                    \(\backslash\)
+    \_\_typeof\_\_(b) \_b = (b);                                                    \(\backslash\)
+    \_a < \_b ? \_a : \_b;                                                         \(\backslash\)
+  \})
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{util_8h_ad96587305bb46bd47c2069e0aafd6530}\label{util_8h_ad96587305bb46bd47c2069e0aafd6530}} 
+\index{util.\+h@{util.\+h}!arr\+\_\+to\+\_\+int@{arr\+\_\+to\+\_\+int}}
+\index{arr\+\_\+to\+\_\+int@{arr\+\_\+to\+\_\+int}!util.\+h@{util.\+h}}
+\subsubsection{\texorpdfstring{arr\+\_\+to\+\_\+int()}{arr\_to\_int()}}
+{\footnotesize\ttfamily uint32\+\_\+t arr\+\_\+to\+\_\+int (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{in,  }\item[{const uint32\+\_\+t}]{n\+\_\+bytes }\end{DoxyParamCaption})}
+
+
+
+Convert an array of bytes into an integer for C\+RC check. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in} & Pointer to array. \\
+\hline
+{\em n\+\_\+bytes} & Number of bytes to merge \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calcutated integer . 
+\end{DoxyReturn}
+\mbox{\Hypertarget{util_8h_aa1921745f0c9cd9f201d624ca86dc40b}\label{util_8h_aa1921745f0c9cd9f201d624ca86dc40b}} 
+\index{util.\+h@{util.\+h}!crc32@{crc32}}
+\index{crc32@{crc32}!util.\+h@{util.\+h}}
+\subsubsection{\texorpdfstring{crc32()}{crc32()}}
+{\footnotesize\ttfamily uint32\+\_\+t crc32 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{const uint32\+\_\+t}]{start,  }\item[{const uint32\+\_\+t}]{end }\end{DoxyParamCaption})}
+
+
+
+C\+RC calculation for T\+S\+IP packets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Pointer to buffer containing data to process. \\
+\hline
+{\em start} & Offset value of first data byte (within buf) to be processed. \\
+\hline
+{\em end} & Offset value of last data byte (within buf) to be processed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Calculated C\+RC value. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{util_8h_aaf584663e7fa9218e6f9f515ff41c6e4}\label{util_8h_aaf584663e7fa9218e6f9f515ff41c6e4}} 
+\index{util.\+h@{util.\+h}!crc32\+\_\+table@{crc32\+\_\+table}}
+\index{crc32\+\_\+table@{crc32\+\_\+table}!util.\+h@{util.\+h}}
+\subsubsection{\texorpdfstring{crc32\+\_\+table}{crc32\_table}}
+{\footnotesize\ttfamily const uint32\+\_\+t crc32\+\_\+table\mbox{[}$\,$\mbox{]}}
+
+
+
+Table of constants used for C\+RC calculation. 
+

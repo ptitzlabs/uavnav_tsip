@@ -1,18 +1,39 @@
-
-#ifndef TSIP_H 
+/** @file tsip_read.h
+ * \brief Header containing the testing functions.
+ * These functions are designed to simulate the UAV parser and the COM interface
+*/
+#ifndef TSIP_H
 #define TSIP_H 
 
 #include "stdio.h"
 #include "util.h"
 #include "stdbool.h"
+/**
+ * \brief DLE flag
+ */
 #define DLE 0x10
+/**
+ * \brief ETX flag
+ */
 #define ETX 0x03
 
+/**
+ * \brief Test data array
+ */
 extern unsigned char * g_test_data;
-extern bool g_verbose_output;
+/**
+ * \brief Test data length
+ */
 extern uint32_t g_test_data_len;
+/**
+ * \brief Start of the test data
+ */
 extern uint32_t g_test_data_start;
 
+/**
+ * \brief Verbose output parameter
+ */
+extern bool g_verbose_output;
 
 /**
 * \brief Read received raw data from COM port.
@@ -21,7 +42,7 @@ extern uint32_t g_test_data_start;
 * data will be served. User may decide to call this function within a loop
 * until the desired amount of data is received.
 *
-* \param buf Pointer to destination buffer where to copy received data.
+* \param buffer Pointer to destination buffer where to copy received data.
 * \param count Maximum number of bytes to be read.
 * \return Number of read bytes. This value will always be <= count.
 */
@@ -40,12 +61,6 @@ uint32_t uavnComRead(uint8_t* const buffer, const uint32_t count) {
     int32_t len = end - g_test_data_start;
     g_test_data_start = end;
     return len;
-}
-uint32_t uavnComRead_seq(uint8_t* const buffer, const uint32_t count) {
-    static int counter = 20;
-    counter--;
-    if(counter < 0 ) counter = 0;
-    return counter;
 }
 /**
 * \brief Parse a TSIP data.

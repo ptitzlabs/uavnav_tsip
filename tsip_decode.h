@@ -1,3 +1,7 @@
+/** @file tsip_decode.h
+ * \brief Header containing the decoding functions.
+ * The main decoder code is contained here
+*/
 #ifndef DATA_H
 #define DATA_H
 
@@ -8,6 +12,7 @@
 
 #include "tsip_read.h"
 
+  //! [Setup parameters]
 /**
  * \brief Number of concurrent threads.
  */
@@ -24,11 +29,13 @@
  * \brief Maximum allowable decoded data size.
  */
 #define MAX_DATA_SIZE 256
+  //! [Setup parameters]
 /**
  * \brief Debug flag.
  */
 #define DEBUG false
 
+  //! [Setup Parameters]
 /**
  * \brief Data read mutex locks.
  */
@@ -72,6 +79,7 @@ enum flag_type_enum { start_flag, end_flag };
 uint8_t validate_packet(const uint8_t *buffer, const uint32_t start,
                         const uint32_t end) {
   uint32_t len = end - start;
+  //! [Validating packet]
   // packet size
   if (len < 6 || len > MAX_DATA_SIZE + 6) {
     return size_mismatch;
@@ -88,6 +96,7 @@ uint8_t validate_packet(const uint8_t *buffer, const uint32_t start,
   if (chksum_int != chksum_chk) {
     return chksum_mismatch;
   }
+  //! [Validating packet]
 
   // no errors found
   return 0;
@@ -114,6 +123,7 @@ void data_read(uint8_t *raw, uint32_t *raw_len, uint8_t id) {
     // make sure that it's the right turn
     pthread_mutex_lock(&g_data_read_lock);
     if (g_data_read_seq == id) {
+      //! [Reading COM data]
       do {
         // keep filling up the raw buffer until it's full
         data_size = (res < MAX_COM_SIZE) ? res : MAX_COM_SIZE;
@@ -121,6 +131,7 @@ void data_read(uint8_t *raw, uint32_t *raw_len, uint8_t id) {
         (*raw_len) += len;
         res -= len;
       } while (len != 0 && res != 0);
+      //! [Reading COM data]
 
       // queue the next thread
       if (id == N_THREADS - 1) {
@@ -160,6 +171,7 @@ void packet_decode(uint8_t *processed, uint32_t *processed_len, uint8_t *raw,
   *processed_len = 0;
   uint32_t i = 0;
   *hanging_dle = false;
+  //! [Removing escape characters]
   while (i < *raw_len) {
     // check for DLE
     if (raw[i] == DLE) {
@@ -199,6 +211,7 @@ void packet_decode(uint8_t *processed, uint32_t *processed_len, uint8_t *raw,
       i++;
     }
   }
+  //! [Removing escape characters]
 }
 
 /**
@@ -207,8 +220,8 @@ void packet_decode(uint8_t *processed, uint32_t *processed_len, uint8_t *raw,
 * Check if the previous raw data block ended on a DLE. Correct the following
 * data block structure and data to match the trailing DLE character.
 *
-* \param processed 		Pointer to processed data
-* \param processed_len 	Size of processed data
+* \param[in] processed 		Pointer to processed data
+* \param[in] processed_len 	Size of processed data
 * \param flag 			Pointer to flags, contains flag locations
 * \param flag_type 		Types of marked flags
 * \param flag_count 	Number of flags
@@ -217,6 +230,8 @@ void packet_decode(uint8_t *processed, uint32_t *processed_len, uint8_t *raw,
 void hanging_dle_test(uint8_t *processed, uint32_t processed_len,
                       uint32_t *flag, uint8_t *flag_type,
                       uint32_t *flag_count) {
+
+  //! [Checking hanging DLE flags]
   // check if the last block ended on a DLE flag
   if (g_inter_buffer_len > 0 && g_inter_buffer_dle == true) {
     g_inter_buffer_dle = false;
@@ -249,6 +264,7 @@ void hanging_dle_test(uint8_t *processed, uint32_t processed_len,
       }
     }
   }
+  //! [Checking hanging DLE flags]
 }
 
 /**
@@ -257,17 +273,19 @@ void hanging_dle_test(uint8_t *processed, uint32_t processed_len,
 * If no DLE/ETX combo is found at the end of the packet, pass on it's trailing
 * part to the next evaluation.
 *
-* \param processed 		Pointer to processed data.
-* \param processed_len 	Size of processed data.
-* \param flag 			Pointer to flags, contains flag locations.
-* \param flag_type 		Types of marked flags.
-* \param flag_count 	Number of flags.
-* \param hanging_dle 	Hanging DLE character indicator.
+* \param[in] processed 		Pointer to processed data.
+* \param[in] processed_len 	Size of processed data.
+* \param[in] flag 			Pointer to flags, contains flag
+* locations.
+* \param[in] flag_type 		Types of marked flags.
+* \param[in] flag_count 	Number of flags.
+* \param[in] hanging_dle 	Hanging DLE character indicator.
 * \return
 */
 void trailing_data_store(uint8_t *processed, uint32_t processed_len,
                          uint32_t *flag, uint8_t *flag_type,
                          uint32_t *flag_count, bool hanging_dle) {
+  //! [Storing trailing data]
   // store the tail of the processed data into the inter buffer, from the
   // last start flag to the end
   if (flag_type[(*flag_count) - 1] == start_flag) {
@@ -293,6 +311,7 @@ void trailing_data_store(uint8_t *processed, uint32_t processed_len,
       g_inter_buffer_dle = false;
     }
   }
+  //! [Storing trailing data]
 }
 
 /**
@@ -303,13 +322,14 @@ void trailing_data_store(uint8_t *processed, uint32_t processed_len,
 * that has not been parsed. Only one thread can parse the data at a time to make
 * sure that it's parsed in the same order as it comes in.
 *
-* \param processed 		Pointer to processed data.
-* \param processed_len 	Size of processed data.
-* \param flag 			Pointer to flags, contains flag locations.
-* \param flag_type 		Types of marked flags.
-* \param flag_count 	Number of flags.
-* \param id 			Thread id.
-* \param hanging_dle 	Hanging DLE character indicator.
+* \param[in] processed 		Pointer to processed data.
+* \param[in] processed_len 	Size of processed data.
+* \param[in] flag 			Pointer to flags, contains flag
+* locations.
+* \param[in] flag_type 		Types of marked flags.
+* \param[in] flag_count 	Number of flags.
+* \param[in] id 			Thread id.
+* \param[in] hanging_dle 	Hanging DLE character indicator.
 * \return
 */
 void data_parse(uint8_t *processed, uint32_t processed_len, uint32_t *flag,
@@ -321,6 +341,7 @@ void data_parse(uint8_t *processed, uint32_t processed_len, uint32_t *flag,
     pthread_mutex_lock(&g_data_parse_lock);
 
     if (g_data_parse_seq == id) {
+      //! [Checking previous buffer]
       // check if the last block ended on a DLE flag
       hanging_dle_test(processed, processed_len, flag, flag_type, flag_count);
       // make sure there are some flags found
@@ -343,7 +364,9 @@ void data_parse(uint8_t *processed, uint32_t processed_len, uint32_t *flag,
             g_inter_buffer_dle = false;
           }
         }
+        //! [Checking previous buffer]
 
+        //! [Checking uninterrupted packets]
         // check the uninterrupted packets
         for (i = 0; i < (*flag_count) - 1; i++) {
           if (flag_type[i] == start_flag && flag_type[i + 1] == end_flag) {
@@ -354,6 +377,7 @@ void data_parse(uint8_t *processed, uint32_t processed_len, uint32_t *flag,
             }
           }
         }
+        //! [Checking uninterrupted packets]
         trailing_data_store(processed, processed_len, flag, flag_type,
                             flag_count, hanging_dle);
       } else {
@@ -390,7 +414,7 @@ void data_parse(uint8_t *processed, uint32_t processed_len, uint32_t *flag,
 * thread can read or parse the data at a time, while the decoding is done
 * concurrently.
 *
-* \param tid Thread id.
+* \param[in] tid Thread id.
 * \return
 */
 void *extract_data(void *tid) {
@@ -428,19 +452,28 @@ void *extract_data(void *tid) {
   return NULL;
 }
 
+/**
+* \brief Decoder task periodic function
+*
+* This function spawns several decoder threads
+*
+* \return
+*/
 void TaskUpLink200Hz() {
-    packet_counter = 0;
+  packet_counter = 0;
   uint8_t ints[N_THREADS];
   pthread_t thread[N_THREADS];
+  //! [Starting threads]
   g_data_read_seq = 0;
   for (uint8_t i = 0; i < N_THREADS; i++) {
     ints[i] = i;
     pthread_create(&thread[i], NULL, extract_data, &ints[i]);
   }
+  //! [Starting threads]
   for (uint8_t i = 0; i < N_THREADS; i++) {
     pthread_join(thread[i], NULL);
   }
-  printf("Decoded %u packets\n",packet_counter);
+  printf("Decoded %u packets\n", packet_counter);
 }
 
 #endif

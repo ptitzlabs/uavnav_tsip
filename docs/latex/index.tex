@@ -1,0 +1,198 @@
+\hypertarget{index_intro_sec}{}\section{Introduction}\label{index_intro_sec}
+This program is designed to read and decode T\+S\+IP data packets.\hypertarget{index_install_sec}{}\section{Installation}\label{index_install_sec}
+Both .pro files to compile with QT and a simple Makefile are included. To compile the program simply run make from the main program directory.\hypertarget{index_Decoder}{}\section{Decoder}\label{index_Decoder}
+The packet is decoded first. The decoding process removes the escape characters and maps the flags, marking the packet starting and ending points.
+
+
+\begin{DoxyCodeInclude}
+  \textcolor{keywordflow}{while} (i < *raw\_len) \{
+    \textcolor{comment}{// check for DLE}
+    \textcolor{keywordflow}{if} (raw[i] == \hyperlink{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}{DLE}) \{
+      \textcolor{comment}{// check if there are still bytes left in the buffer}
+      \textcolor{keywordflow}{if} (i + 1 < *raw\_len) \{
+        \textcolor{comment}{// check the byte after the DLE}
+        i++;
+        \textcolor{keywordflow}{switch} (raw[i]) \{
+        \textcolor{keywordflow}{case} \hyperlink{tsip__read_8h_af02558e983dd26832a852bf186ed6726}{ETX}:
+          \textcolor{comment}{// end of packet}
+          flag[*flag\_count] = *processed\_len;
+          flag\_type[*flag\_count] = \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}{end\_flag};
+          (*flag\_count)++;
+          \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{case} \hyperlink{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}{DLE}:
+          \textcolor{comment}{// escape flag, don't do anything}
+          processed[(*processed\_len)++] = raw[i];
+          \textcolor{keywordflow}{break};
+        \textcolor{keywordflow}{default}:
+          \textcolor{comment}{// data start}
+          flag[*flag\_count] = *processed\_len;
+          flag\_type[*flag\_count] = \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a4b507f9b9a7feb19dc7248d7de612717}{start\_flag};
+          (*flag\_count)++;
+          processed[(*processed\_len)++] = raw[i];
+          \textcolor{keywordflow}{break};
+        \}
+        i++;
+      \} \textcolor{keywordflow}{else} \{
+        \textcolor{comment}{// end of raw data, just store it as-is and figure it out}
+        \textcolor{comment}{// later}
+        *hanging\_dle = \textcolor{keyword}{true};
+        processed[(*processed\_len)++] = raw[i];
+        i++;
+      \}
+    \} \textcolor{keywordflow}{else} \{
+      processed[(*processed\_len)++] = raw[i];
+      i++;
+    \}
+  \}
+\end{DoxyCodeInclude}
+ Once the data block is processed, the previous data buffer is checked. This is done to ensure that if a packet is spread across several blocks it is still identified and parsed.
+
+
+\begin{DoxyCodeInclude}
+      \textcolor{comment}{// check if the last block ended on a DLE flag}
+      \hyperlink{tsip__decode_8h_a812dd629379f16c30e1dba03db6745fc}{hanging\_dle\_test}(processed, processed\_len, flag, flag\_type, flag\_count);
+      \textcolor{comment}{// make sure there are some flags found}
+      \textcolor{keywordflow}{if} ((*flag\_count) > 0) \{
+        \textcolor{comment}{// check if there's data from before}
+        \textcolor{keywordflow}{if} (g\_inter\_buffer\_len > 0) \{
+
+          \textcolor{keywordflow}{if} (flag\_type[0] == \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}{end\_flag}) \{
+            \textcolor{comment}{// patch the data together}
+            memcpy(g\_inter\_buffer + g\_inter\_buffer\_len, processed,
+                   flag[0] * \textcolor{keyword}{sizeof}(uint8\_t));
+            g\_inter\_buffer\_len += flag[0];
+            \textcolor{comment}{// validate and parse}
+            \textcolor{keywordflow}{if} (\hyperlink{tsip__decode_8h_a41c4ae0abb32c8c722925578007e711b}{validate\_packet}(g\_inter\_buffer, 0, g\_inter\_buffer\_len) == 0) \{
+              \hyperlink{tsip__read_8h_aaf187111fc27885f025120a9bf69de0d}{ParseTsipData}(g\_inter\_buffer, g\_inter\_buffer\_len - 4);
+              packet\_counter++;
+            \}
+            \textcolor{comment}{// reset buffer}
+            g\_inter\_buffer\_len = 0;
+            g\_inter\_buffer\_dle = \textcolor{keyword}{false};
+          \}
+        \}
+\end{DoxyCodeInclude}
+ If a complete packet is identified, it is validated and parsed. The validation includes checking that the packet size does not exceed minimum or maximum limits, that the first byte ID is legal and a C\+RC checksum comparison.
+
+
+\begin{DoxyCodeInclude}
+  \textcolor{comment}{// packet size}
+  \textcolor{keywordflow}{if} (len < 6 || len > \hyperlink{tsip__decode_8h_a87f68e96fb938eddc39ad1f19d923a96}{MAX\_DATA\_SIZE} + 6) \{
+    \textcolor{keywordflow}{return} \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a06e8eebf569c66387fe7e38059ceed79}{size\_mismatch};
+  \}
+  \textcolor{comment}{// ID}
+  \textcolor{keywordflow}{if} (buffer[start] == \hyperlink{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}{DLE}) \{
+    \textcolor{keywordflow}{return} \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233aa7c3ec9f75a85e0e38eb97a1d7bd7490}{illegal\_id};
+  \}
+
+  \textcolor{comment}{// chksum}
+  uint32\_t chksum\_start = end - 4;
+  uint32\_t chksum\_int = \hyperlink{util_8h_ad96587305bb46bd47c2069e0aafd6530}{arr\_to\_int}(buffer + chksum\_start, 4);
+  uint32\_t chksum\_chk = \hyperlink{util_8h_aa1921745f0c9cd9f201d624ca86dc40b}{crc32}(buffer, start, chksum\_start);
+  \textcolor{keywordflow}{if} (chksum\_int != chksum\_chk) \{
+    \textcolor{keywordflow}{return} \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a732565fcd9231ccc944acf3624b80300}{chksum\_mismatch};
+  \}
+\end{DoxyCodeInclude}
+ If the packet is not correct, a flag indicating the failure mode is returned. After validating the packets that might have started in the previous block, the current block is scanned for packets, which are also validated and parsed.
+
+
+\begin{DoxyCodeInclude}
+        \textcolor{comment}{// check the uninterrupted packets}
+        \textcolor{keywordflow}{for} (i = 0; i < (*flag\_count) - 1; i++) \{
+          \textcolor{keywordflow}{if} (flag\_type[i] == \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a4b507f9b9a7feb19dc7248d7de612717}{start\_flag} && flag\_type[i + 1] == 
+      \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}{end\_flag}) \{
+            \textcolor{comment}{// uninterrupted packet, validate and parse}
+            \textcolor{keywordflow}{if} (\hyperlink{tsip__decode_8h_a41c4ae0abb32c8c722925578007e711b}{validate\_packet}(processed, flag[i], flag[i + 1]) == 0) \{
+              \hyperlink{tsip__read_8h_aaf187111fc27885f025120a9bf69de0d}{ParseTsipData}(processed + flag[i], flag[i + 1] - flag[i] - 4);
+              packet\_counter++;
+            \}
+          \}
+        \}
+\end{DoxyCodeInclude}
+ \hypertarget{index_Tests}{}\section{Tests}\label{index_Tests}
+The tests included are the output and the speed tests. Two test data files are included in \char`\"{}data\char`\"{} folder\+: the tsip\+\_\+sample with 3 valid data blocks and the tsip\+\_\+sample\+\_\+ext with 30000 blocks.
+
+The output test is run on the shorter block, while the timing test is run on the longer one. The shorter output test can be run by appending a binary filename as a program parameter for running extra tests.
+
+
+\begin{DoxyCodeInclude}
+  \textcolor{keywordflow}{if} (argc > 1) \{
+    \textcolor{comment}{// load a provided file}
+    \hyperlink{uavnav__main_8c_aad6066d9ede8cbf9b9d5e4fa28236380}{test\_data\_load}(argv[1]);
+  \} \textcolor{keywordflow}{else} \{
+    \textcolor{comment}{// or a default one if none provided}
+    \hyperlink{uavnav__main_8c_aad6066d9ede8cbf9b9d5e4fa28236380}{test\_data\_load}(\textcolor{stringliteral}{"data/tsip\_sample"});
+  \}
+\end{DoxyCodeInclude}
+
+
+The tests are run by executing the Task\+Uplink200\+Hz() command. This function starts the threads and keeps running until the entire data set is decoded.
+
+
+\begin{DoxyCodeInclude}
+  g\_data\_read\_seq = 0;
+  \textcolor{keywordflow}{for} (uint8\_t i = 0; i < \hyperlink{tsip__decode_8h_ab60b5074c740fd36061f48f90d1a0b21}{N\_THREADS}; i++) \{
+    ints[i] = i;
+    pthread\_create(&thread[i], NULL, \hyperlink{tsip__decode_8h_a12e6599a2b96dd309e86e6fbb868a5d8}{extract\_data}, &ints[i]);
+  \}
+\end{DoxyCodeInclude}
+ The example program output is shown below\+:
+
+\begin{DoxyVerb}Running verbose test
+Loaded file data/tsip_sample
+Size: 135
+ID1: 165 ID2: 9 CHKSUM: 0xe85817fd
+56 96 8a f1
+cb 6e 13 50
+8f 3c 84 44
+c1 03 7c fc
+3e 00 db 04
+1c 05 00 76
+1d 10 00 ff
+ff 00 00 00
+00 00 00 00
+00 b1 46 d6
+43 20 4e
+
+ID1: 165 ID2: 10 CHKSUM: 0xc4c61b3e
+db 04 1c 05
+f9 f6 6d 44
+00 00 c5 0a
+76 1d 10 00
+20 4e
+
+ID1: 57 ID2: 2 CHKSUM: 0x476753ec
+64 61 3e 0f
+c4 c6 8a 40
+
+
+Decoded 3 packets
+
+Running a timed test
+Loaded file data/tsip_sample_ext
+Size: 1350000
+Decoded 29535 packets
+Time taken 0 seconds 9 milliseconds
+\end{DoxyVerb}
+
+
+Note that the tsip\+\_\+sample\+\_\+ext file actually contains 30000 packet samples, so the program may still needs some improvements in that regard. The main problem comes from the fact that a single packet may span several blocks of data read from the C\+OM port, and separate blocks must be merged without losing data. Every possible condition must be taken into account. The decoder functionality and methods are described in the following section.
+
+The verbose test shows that the packets are interpreted correctly. The timed test allows to compare the performance for different setup parameters, defined in advance.
+
+
+\begin{DoxyCodeInclude}
+
+\textcolor{preprocessor}{#define N\_THREADS 2}
+
+\textcolor{preprocessor}{#define BLOCK\_SIZE 2048}
+
+\textcolor{preprocessor}{#define MAX\_COM\_SIZE 512}
+
+\textcolor{preprocessor}{#define MAX\_DATA\_SIZE 256}
+\end{DoxyCodeInclude}
+ The number of threads is defined by the variable N\+\_\+\+T\+H\+R\+E\+A\+DS. In theory spreading the load across several threads should increase the execution efficiency and reduce the execution times. In practice, a lot of this depends on the hardware architecture. On this machine (Intel(\+R) Core(\+T\+M) i7-\/3610\+QM C\+PU @ 2.\+30\+G\+Hz running Debian G\+N\+U/\+Linux) two threads performed slightly faster than a single thread, and the performance started to decrease once the number of threads exceeded 4.
+
+The B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE variable specifies the data block size to be processed by a single thread. It was found that larger block size results in a better performance. Which is natural, since it takes less effort to analyze one continuous data block rather than a series of discontinuous ones.
+
+The M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE parameter is the maximum allowable data size that is allowed to read from the C\+OM port in one go. While the M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE parameter is used to define the maximum packet size, and it is used for data validation and sanity checks. 

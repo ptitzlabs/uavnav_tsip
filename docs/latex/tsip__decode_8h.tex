@@ -1,0 +1,411 @@
+\hypertarget{tsip__decode_8h}{}\section{tsip\+\_\+decode.\+h File Reference}
+\label{tsip__decode_8h}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+
+
+Header containing the decoding functions. The main decoder code is contained here.  
+
+
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tsip\+\_\+read.\+h\char`\"{}}\newline
+Include dependency graph for tsip\+\_\+decode.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tsip__decode_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{tsip__decode_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tsip__decode_8h_ab60b5074c740fd36061f48f90d1a0b21}{N\+\_\+\+T\+H\+R\+E\+A\+DS}~2
+\begin{DoxyCompactList}\small\item\em \mbox{[}Setup parameters\mbox{]} \end{DoxyCompactList}\item 
+\#define \hyperlink{tsip__decode_8h_ad51ded0bbd705f02f73fc60c0b721ced}{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}~2048
+\begin{DoxyCompactList}\small\item\em Data block size to be processed by a single thread. \end{DoxyCompactList}\item 
+\#define \hyperlink{tsip__decode_8h_a1a11ffedda6862cc09621931092dbaf5}{M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE}~512
+\begin{DoxyCompactList}\small\item\em Maximum allowable raw data size. \end{DoxyCompactList}\item 
+\#define \hyperlink{tsip__decode_8h_a87f68e96fb938eddc39ad1f19d923a96}{M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~256
+\begin{DoxyCompactList}\small\item\em Maximum allowable decoded data size. \end{DoxyCompactList}\item 
+\#define \hyperlink{tsip__decode_8h_ad72dbcf6d0153db1b8d8a58001feed83}{D\+E\+B\+UG}~false
+\begin{DoxyCompactList}\small\item\em \mbox{[}Setup parameters\mbox{]} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233}{validate\+\_\+error} \{ \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233ab7e4e0120a041dbe6528b050c04269e0}{none}, 
+\hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a06e8eebf569c66387fe7e38059ceed79}{size\+\_\+mismatch}, 
+\hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233aa7c3ec9f75a85e0e38eb97a1d7bd7490}{illegal\+\_\+id}, 
+\hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a732565fcd9231ccc944acf3624b80300}{chksum\+\_\+mismatch}
+ \}\begin{DoxyCompactList}\small\item\em Validation error types. \end{DoxyCompactList}
+\item 
+enum \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55}{flag\+\_\+type\+\_\+enum} \{ \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a4b507f9b9a7feb19dc7248d7de612717}{start\+\_\+flag}, 
+\hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}{end\+\_\+flag}
+ \}\begin{DoxyCompactList}\small\item\em Special character flag types. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{tsip__decode_8h_a41c4ae0abb32c8c722925578007e711b}{validate\+\_\+packet} (const uint8\+\_\+t $\ast$buffer, const uint32\+\_\+t start, const uint32\+\_\+t end)
+\begin{DoxyCompactList}\small\item\em Validate the packet. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_aa67c1cf61103414427db3eb35b74db60}{data\+\_\+read} (uint8\+\_\+t $\ast$raw, uint32\+\_\+t $\ast$raw\+\_\+len, uint8\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em Read the recieved raw data, multithread-\/protected. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_af38a027d040fb45e1614b59144351d34}{packet\+\_\+decode} (uint8\+\_\+t $\ast$processed, uint32\+\_\+t $\ast$processed\+\_\+len, uint8\+\_\+t $\ast$raw, uint32\+\_\+t $\ast$raw\+\_\+len, uint32\+\_\+t $\ast$flag, uint8\+\_\+t $\ast$flag\+\_\+type, uint32\+\_\+t $\ast$flag\+\_\+count, bool $\ast$hanging\+\_\+dle)
+\begin{DoxyCompactList}\small\item\em Process raw data. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_a812dd629379f16c30e1dba03db6745fc}{hanging\+\_\+dle\+\_\+test} (uint8\+\_\+t $\ast$processed, uint32\+\_\+t processed\+\_\+len, uint32\+\_\+t $\ast$flag, uint8\+\_\+t $\ast$flag\+\_\+type, uint32\+\_\+t $\ast$flag\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Test for special condition that the previous block ended on a D\+LE. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_af34dd84879b0a89a108bcdce9cd5b20b}{trailing\+\_\+data\+\_\+store} (uint8\+\_\+t $\ast$processed, uint32\+\_\+t processed\+\_\+len, uint32\+\_\+t $\ast$flag, uint8\+\_\+t $\ast$flag\+\_\+type, uint32\+\_\+t $\ast$flag\+\_\+count, bool hanging\+\_\+dle)
+\begin{DoxyCompactList}\small\item\em Store the trailing data. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_a2b9f28f133c97a87d0aa0ee8b1ba82fe}{data\+\_\+parse} (uint8\+\_\+t $\ast$processed, uint32\+\_\+t processed\+\_\+len, uint32\+\_\+t $\ast$flag, uint8\+\_\+t $\ast$flag\+\_\+type, uint32\+\_\+t $\ast$flag\+\_\+count, uint8\+\_\+t id, bool hanging\+\_\+dle)
+\begin{DoxyCompactList}\small\item\em Parse the decoded data, multithread-\/protected. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{tsip__decode_8h_a12e6599a2b96dd309e86e6fbb868a5d8}{extract\+\_\+data} (void $\ast$tid)
+\begin{DoxyCompactList}\small\item\em Data processing thread function. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__decode_8h_a15f61d2ad114da50125b6b5816a52a3d}{Task\+Up\+Link200\+Hz} ()
+\begin{DoxyCompactList}\small\item\em Decoder task periodic function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header containing the decoding functions. The main decoder code is contained here. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tsip__decode_8h_ad51ded0bbd705f02f73fc60c0b721ced}\label{tsip__decode_8h_ad51ded0bbd705f02f73fc60c0b721ced}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}}
+\index{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE@{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE}{BLOCK\_SIZE}}
+{\footnotesize\ttfamily \#define B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE~2048}
+
+
+
+Data block size to be processed by a single thread. 
+
+\mbox{\Hypertarget{tsip__decode_8h_ad72dbcf6d0153db1b8d8a58001feed83}\label{tsip__decode_8h_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}
+{\footnotesize\ttfamily \#define D\+E\+B\+UG~false}
+
+
+
+\mbox{[}Setup parameters\mbox{]} 
+
+Debug flag. \mbox{\Hypertarget{tsip__decode_8h_a1a11ffedda6862cc09621931092dbaf5}\label{tsip__decode_8h_a1a11ffedda6862cc09621931092dbaf5}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE@{M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE}}
+\index{M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE@{M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE}{MAX\_COM\_SIZE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+O\+M\+\_\+\+S\+I\+ZE~512}
+
+
+
+Maximum allowable raw data size. 
+
+\mbox{\Hypertarget{tsip__decode_8h_a87f68e96fb938eddc39ad1f19d923a96}\label{tsip__decode_8h_a87f68e96fb938eddc39ad1f19d923a96}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}}
+\index{M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}{MAX\_DATA\_SIZE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE~256}
+
+
+
+Maximum allowable decoded data size. 
+
+\mbox{\Hypertarget{tsip__decode_8h_ab60b5074c740fd36061f48f90d1a0b21}\label{tsip__decode_8h_ab60b5074c740fd36061f48f90d1a0b21}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!N\+\_\+\+T\+H\+R\+E\+A\+DS@{N\+\_\+\+T\+H\+R\+E\+A\+DS}}
+\index{N\+\_\+\+T\+H\+R\+E\+A\+DS@{N\+\_\+\+T\+H\+R\+E\+A\+DS}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{N\+\_\+\+T\+H\+R\+E\+A\+DS}{N\_THREADS}}
+{\footnotesize\ttfamily \#define N\+\_\+\+T\+H\+R\+E\+A\+DS~2}
+
+
+
+\mbox{[}Setup parameters\mbox{]} 
+
+Number of concurrent threads. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55}\label{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!flag\+\_\+type\+\_\+enum@{flag\+\_\+type\+\_\+enum}}
+\index{flag\+\_\+type\+\_\+enum@{flag\+\_\+type\+\_\+enum}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{flag\+\_\+type\+\_\+enum}{flag\_type\_enum}}
+{\footnotesize\ttfamily enum \hyperlink{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55}{flag\+\_\+type\+\_\+enum}}
+
+
+
+Special character flag types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{start\+\_\+flag@{start\+\_\+flag}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!start\+\_\+flag@{start\+\_\+flag}}}\mbox{\Hypertarget{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a4b507f9b9a7feb19dc7248d7de612717}\label{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a4b507f9b9a7feb19dc7248d7de612717}} 
+start\+\_\+flag&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{end\+\_\+flag@{end\+\_\+flag}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!end\+\_\+flag@{end\+\_\+flag}}}\mbox{\Hypertarget{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}\label{tsip__decode_8h_aaadb960acba914ffc497ac7b256cdd55a5ed0c9e4189b86c84f9ded0501e9dd18}} 
+end\+\_\+flag&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233}\label{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!validate\+\_\+error@{validate\+\_\+error}}
+\index{validate\+\_\+error@{validate\+\_\+error}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{validate\+\_\+error}{validate\_error}}
+{\footnotesize\ttfamily enum \hyperlink{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233}{validate\+\_\+error}}
+
+
+
+Validation error types. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{none@{none}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!none@{none}}}\mbox{\Hypertarget{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233ab7e4e0120a041dbe6528b050c04269e0}\label{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233ab7e4e0120a041dbe6528b050c04269e0}} 
+none&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{size\+\_\+mismatch@{size\+\_\+mismatch}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!size\+\_\+mismatch@{size\+\_\+mismatch}}}\mbox{\Hypertarget{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a06e8eebf569c66387fe7e38059ceed79}\label{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a06e8eebf569c66387fe7e38059ceed79}} 
+size\+\_\+mismatch&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{illegal\+\_\+id@{illegal\+\_\+id}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!illegal\+\_\+id@{illegal\+\_\+id}}}\mbox{\Hypertarget{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233aa7c3ec9f75a85e0e38eb97a1d7bd7490}\label{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233aa7c3ec9f75a85e0e38eb97a1d7bd7490}} 
+illegal\+\_\+id&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{chksum\+\_\+mismatch@{chksum\+\_\+mismatch}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!chksum\+\_\+mismatch@{chksum\+\_\+mismatch}}}\mbox{\Hypertarget{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a732565fcd9231ccc944acf3624b80300}\label{tsip__decode_8h_ac1accdfaf17cd8ccf452c605fa935233a732565fcd9231ccc944acf3624b80300}} 
+chksum\+\_\+mismatch&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tsip__decode_8h_a2b9f28f133c97a87d0aa0ee8b1ba82fe}\label{tsip__decode_8h_a2b9f28f133c97a87d0aa0ee8b1ba82fe}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!data\+\_\+parse@{data\+\_\+parse}}
+\index{data\+\_\+parse@{data\+\_\+parse}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{data\+\_\+parse()}{data\_parse()}}
+{\footnotesize\ttfamily void data\+\_\+parse (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{processed,  }\item[{uint32\+\_\+t}]{processed\+\_\+len,  }\item[{uint32\+\_\+t $\ast$}]{flag,  }\item[{uint8\+\_\+t $\ast$}]{flag\+\_\+type,  }\item[{uint32\+\_\+t $\ast$}]{flag\+\_\+count,  }\item[{uint8\+\_\+t}]{id,  }\item[{bool}]{hanging\+\_\+dle }\end{DoxyParamCaption})}
+
+
+
+Parse the decoded data, multithread-\/protected. 
+
+Format the data, run the checks on the preceding data block. Run the validation checks. Parse the data if it\textquotesingle{}s correct. Store the trailing part that has not been parsed. Only one thread can parse the data at a time to make sure that it\textquotesingle{}s parsed in the same order as it comes in.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em processed} & Pointer to processed data. \\
+\hline
+\mbox{\tt in}  & {\em processed\+\_\+len} & Size of processed data. \\
+\hline
+\mbox{\tt in}  & {\em flag} & Pointer to flags, contains flag locations. \\
+\hline
+\mbox{\tt in}  & {\em flag\+\_\+type} & Types of marked flags. \\
+\hline
+\mbox{\tt in}  & {\em flag\+\_\+count} & Number of flags. \\
+\hline
+\mbox{\tt in}  & {\em id} & Thread id. \\
+\hline
+\mbox{\tt in}  & {\em hanging\+\_\+dle} & Hanging D\+LE character indicator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Checking previous buffer\mbox{]}
+
+\mbox{[}Checking previous buffer\mbox{]}
+
+\mbox{[}Checking uninterrupted packets\mbox{]}
+
+\mbox{[}Checking uninterrupted packets\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_aa67c1cf61103414427db3eb35b74db60}\label{tsip__decode_8h_aa67c1cf61103414427db3eb35b74db60}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!data\+\_\+read@{data\+\_\+read}}
+\index{data\+\_\+read@{data\+\_\+read}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{data\+\_\+read()}{data\_read()}}
+{\footnotesize\ttfamily void data\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{raw,  }\item[{uint32\+\_\+t $\ast$}]{raw\+\_\+len,  }\item[{uint8\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+
+
+Read the recieved raw data, multithread-\/protected. 
+
+Read the data. Only one thread is allowed to read data at a time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw} & Pointer to raw data destination. \\
+\hline
+{\em raw\+\_\+len} & Pointer to the size of the data read. \\
+\hline
+{\em id} & Thread id. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error type, 0 if no errors are found. 
+\end{DoxyReturn}
+\mbox{[}Reading C\+OM data\mbox{]}
+
+\mbox{[}Reading C\+OM data\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_a12e6599a2b96dd309e86e6fbb868a5d8}\label{tsip__decode_8h_a12e6599a2b96dd309e86e6fbb868a5d8}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!extract\+\_\+data@{extract\+\_\+data}}
+\index{extract\+\_\+data@{extract\+\_\+data}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{extract\+\_\+data()}{extract\_data()}}
+{\footnotesize\ttfamily void$\ast$ extract\+\_\+data (\begin{DoxyParamCaption}\item[{void $\ast$}]{tid }\end{DoxyParamCaption})}
+
+
+
+Data processing thread function. 
+
+Thread function tasked with reading, decoding and parsing the data. Only one thread can read or parse the data at a time, while the decoding is done concurrently.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tid} & Thread id. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tsip__decode_8h_a812dd629379f16c30e1dba03db6745fc}\label{tsip__decode_8h_a812dd629379f16c30e1dba03db6745fc}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!hanging\+\_\+dle\+\_\+test@{hanging\+\_\+dle\+\_\+test}}
+\index{hanging\+\_\+dle\+\_\+test@{hanging\+\_\+dle\+\_\+test}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{hanging\+\_\+dle\+\_\+test()}{hanging\_dle\_test()}}
+{\footnotesize\ttfamily void hanging\+\_\+dle\+\_\+test (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{processed,  }\item[{uint32\+\_\+t}]{processed\+\_\+len,  }\item[{uint32\+\_\+t $\ast$}]{flag,  }\item[{uint8\+\_\+t $\ast$}]{flag\+\_\+type,  }\item[{uint32\+\_\+t $\ast$}]{flag\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Test for special condition that the previous block ended on a D\+LE. 
+
+Check if the previous raw data block ended on a D\+LE. Correct the following data block structure and data to match the trailing D\+LE character.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em processed} & Pointer to processed data \\
+\hline
+\mbox{\tt in}  & {\em processed\+\_\+len} & Size of processed data \\
+\hline
+ & {\em flag} & Pointer to flags, contains flag locations \\
+\hline
+ & {\em flag\+\_\+type} & Types of marked flags \\
+\hline
+ & {\em flag\+\_\+count} & Number of flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Checking hanging D\+LE flags\mbox{]}
+
+\mbox{[}Checking hanging D\+LE flags\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_af38a027d040fb45e1614b59144351d34}\label{tsip__decode_8h_af38a027d040fb45e1614b59144351d34}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!packet\+\_\+decode@{packet\+\_\+decode}}
+\index{packet\+\_\+decode@{packet\+\_\+decode}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{packet\+\_\+decode()}{packet\_decode()}}
+{\footnotesize\ttfamily void packet\+\_\+decode (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{processed,  }\item[{uint32\+\_\+t $\ast$}]{processed\+\_\+len,  }\item[{uint8\+\_\+t $\ast$}]{raw,  }\item[{uint32\+\_\+t $\ast$}]{raw\+\_\+len,  }\item[{uint32\+\_\+t $\ast$}]{flag,  }\item[{uint8\+\_\+t $\ast$}]{flag\+\_\+type,  }\item[{uint32\+\_\+t $\ast$}]{flag\+\_\+count,  }\item[{bool $\ast$}]{hanging\+\_\+dle }\end{DoxyParamCaption})}
+
+
+
+Process raw data. 
+
+Process the raw data, removing the escape characters and marking packet start and end points
+
+
+\begin{DoxyParams}{Parameters}
+{\em processed} & Pointer to destination. \\
+\hline
+{\em processed\+\_\+len} & Size of processed data. \\
+\hline
+{\em raw} & Pointer to source raw data. \\
+\hline
+{\em raw\+\_\+len} & Size of source data. \\
+\hline
+{\em flag} & Pointer to flags, contains flag locations. \\
+\hline
+{\em flag\+\_\+type} & Types of marked flags. \\
+\hline
+{\em flag\+\_\+count} & Number of flags. \\
+\hline
+{\em hanging\+\_\+dle} & A flag to indicate a hanging D\+LE character. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Removing escape characters\mbox{]}
+
+\mbox{[}Removing escape characters\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_a15f61d2ad114da50125b6b5816a52a3d}\label{tsip__decode_8h_a15f61d2ad114da50125b6b5816a52a3d}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!Task\+Up\+Link200\+Hz@{Task\+Up\+Link200\+Hz}}
+\index{Task\+Up\+Link200\+Hz@{Task\+Up\+Link200\+Hz}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{Task\+Up\+Link200\+Hz()}{TaskUpLink200Hz()}}
+{\footnotesize\ttfamily void Task\+Up\+Link200\+Hz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Decoder task periodic function. 
+
+This function spawns several decoder threads
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Starting threads\mbox{]}
+
+\mbox{[}Starting threads\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_af34dd84879b0a89a108bcdce9cd5b20b}\label{tsip__decode_8h_af34dd84879b0a89a108bcdce9cd5b20b}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!trailing\+\_\+data\+\_\+store@{trailing\+\_\+data\+\_\+store}}
+\index{trailing\+\_\+data\+\_\+store@{trailing\+\_\+data\+\_\+store}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{trailing\+\_\+data\+\_\+store()}{trailing\_data\_store()}}
+{\footnotesize\ttfamily void trailing\+\_\+data\+\_\+store (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{processed,  }\item[{uint32\+\_\+t}]{processed\+\_\+len,  }\item[{uint32\+\_\+t $\ast$}]{flag,  }\item[{uint8\+\_\+t $\ast$}]{flag\+\_\+type,  }\item[{uint32\+\_\+t $\ast$}]{flag\+\_\+count,  }\item[{bool}]{hanging\+\_\+dle }\end{DoxyParamCaption})}
+
+
+
+Store the trailing data. 
+
+If no D\+L\+E/\+E\+TX combo is found at the end of the packet, pass on it\textquotesingle{}s trailing part to the next evaluation.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em processed} & Pointer to processed data. \\
+\hline
+\mbox{\tt in}  & {\em processed\+\_\+len} & Size of processed data. \\
+\hline
+\mbox{\tt in}  & {\em flag} & Pointer to flags, contains flag locations. \\
+\hline
+\mbox{\tt in}  & {\em flag\+\_\+type} & Types of marked flags. \\
+\hline
+\mbox{\tt in}  & {\em flag\+\_\+count} & Number of flags. \\
+\hline
+\mbox{\tt in}  & {\em hanging\+\_\+dle} & Hanging D\+LE character indicator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Storing trailing data\mbox{]}
+
+\mbox{[}Storing trailing data\mbox{]} \mbox{\Hypertarget{tsip__decode_8h_a41c4ae0abb32c8c722925578007e711b}\label{tsip__decode_8h_a41c4ae0abb32c8c722925578007e711b}} 
+\index{tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}!validate\+\_\+packet@{validate\+\_\+packet}}
+\index{validate\+\_\+packet@{validate\+\_\+packet}!tsip\+\_\+decode.\+h@{tsip\+\_\+decode.\+h}}
+\subsubsection{\texorpdfstring{validate\+\_\+packet()}{validate\_packet()}}
+{\footnotesize\ttfamily uint8\+\_\+t validate\+\_\+packet (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer,  }\item[{const uint32\+\_\+t}]{start,  }\item[{const uint32\+\_\+t}]{end }\end{DoxyParamCaption})}
+
+
+
+Validate the packet. 
+
+Check the packet integrity, correct size and parameters. Run a C\+RC check.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to packet source. \\
+\hline
+{\em start} & Packet data start. \\
+\hline
+{\em end} & Packet data end. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error type, 0 if no errors are found. 
+\end{DoxyReturn}
+\mbox{[}Validating packet\mbox{]}
+
+\mbox{[}Validating packet\mbox{]} 

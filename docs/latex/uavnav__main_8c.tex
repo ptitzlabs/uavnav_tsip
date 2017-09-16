@@ -1,0 +1,138 @@
+\hypertarget{uavnav__main_8c}{}\section{uavnav\+\_\+main.\+c File Reference}
+\label{uavnav__main_8c}\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+
+
+Main tester application. Loads the test data files, runs tests, outputs the.  
+
+
+{\ttfamily \#include \char`\"{}tsip\+\_\+decode.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for uavnav\+\_\+main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uavnav__main_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{uavnav__main_8c_aad6066d9ede8cbf9b9d5e4fa28236380}{test\+\_\+data\+\_\+load} (const char $\ast$fname)
+\begin{DoxyCompactList}\small\item\em Load a test data file. \end{DoxyCompactList}\item 
+int \hyperlink{uavnav__main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char $\ast$ \hyperlink{uavnav__main_8c_a5e287a26406318ae22f91b2186e093a1}{g\+\_\+test\+\_\+data} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em Test data array. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{uavnav__main_8c_aa0982aa6ad6c582eac44366139eec768}{g\+\_\+test\+\_\+data\+\_\+len}
+\begin{DoxyCompactList}\small\item\em Test data length. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{uavnav__main_8c_af8a23b978deb1bf1c3e33bc838fecf69}{g\+\_\+test\+\_\+data\+\_\+start}
+\begin{DoxyCompactList}\small\item\em Start of the test data. \end{DoxyCompactList}\item 
+bool \hyperlink{uavnav__main_8c_af8fbc191e3a97ad0427003b79f03144e}{g\+\_\+verbose\+\_\+output}
+\begin{DoxyCompactList}\small\item\em Verbose output parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main tester application. Loads the test data files, runs tests, outputs the. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{uavnav__main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{uavnav__main_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!main@{main}}
+\index{main@{main}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+Loads a tester data file, runs tests.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em argc} & Number of arguments. \\
+\hline
+\mbox{\tt in}  & {\em argv} & Arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{[}Loading a test file\mbox{]}
+
+\mbox{[}Loading a test file\mbox{]} \mbox{[}Running a verbose test\mbox{]}
+
+\mbox{[}Running a verbose test\mbox{]}
+
+\mbox{[}Running a timed test\mbox{]}
+
+\mbox{[}Running a timed test\mbox{]} \mbox{\Hypertarget{uavnav__main_8c_aad6066d9ede8cbf9b9d5e4fa28236380}\label{uavnav__main_8c_aad6066d9ede8cbf9b9d5e4fa28236380}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!test\+\_\+data\+\_\+load@{test\+\_\+data\+\_\+load}}
+\index{test\+\_\+data\+\_\+load@{test\+\_\+data\+\_\+load}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{test\+\_\+data\+\_\+load()}{test\_data\_load()}}
+{\footnotesize\ttfamily void test\+\_\+data\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fname }\end{DoxyParamCaption})}
+
+
+
+Load a test data file. 
+
+Loads a tester data file into workspace.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fname} & File name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{uavnav__main_8c_a5e287a26406318ae22f91b2186e093a1}\label{uavnav__main_8c_a5e287a26406318ae22f91b2186e093a1}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!g\+\_\+test\+\_\+data@{g\+\_\+test\+\_\+data}}
+\index{g\+\_\+test\+\_\+data@{g\+\_\+test\+\_\+data}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data}{g\_test\_data}}
+{\footnotesize\ttfamily unsigned char$\ast$ g\+\_\+test\+\_\+data = N\+U\+LL}
+
+
+
+Test data array. 
+
+\mbox{\Hypertarget{uavnav__main_8c_aa0982aa6ad6c582eac44366139eec768}\label{uavnav__main_8c_aa0982aa6ad6c582eac44366139eec768}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!g\+\_\+test\+\_\+data\+\_\+len@{g\+\_\+test\+\_\+data\+\_\+len}}
+\index{g\+\_\+test\+\_\+data\+\_\+len@{g\+\_\+test\+\_\+data\+\_\+len}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data\+\_\+len}{g\_test\_data\_len}}
+{\footnotesize\ttfamily uint32\+\_\+t g\+\_\+test\+\_\+data\+\_\+len}
+
+
+
+Test data length. 
+
+\mbox{\Hypertarget{uavnav__main_8c_af8a23b978deb1bf1c3e33bc838fecf69}\label{uavnav__main_8c_af8a23b978deb1bf1c3e33bc838fecf69}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!g\+\_\+test\+\_\+data\+\_\+start@{g\+\_\+test\+\_\+data\+\_\+start}}
+\index{g\+\_\+test\+\_\+data\+\_\+start@{g\+\_\+test\+\_\+data\+\_\+start}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data\+\_\+start}{g\_test\_data\_start}}
+{\footnotesize\ttfamily uint32\+\_\+t g\+\_\+test\+\_\+data\+\_\+start}
+
+
+
+Start of the test data. 
+
+\mbox{\Hypertarget{uavnav__main_8c_af8fbc191e3a97ad0427003b79f03144e}\label{uavnav__main_8c_af8fbc191e3a97ad0427003b79f03144e}} 
+\index{uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}!g\+\_\+verbose\+\_\+output@{g\+\_\+verbose\+\_\+output}}
+\index{g\+\_\+verbose\+\_\+output@{g\+\_\+verbose\+\_\+output}!uavnav\+\_\+main.\+c@{uavnav\+\_\+main.\+c}}
+\subsubsection{\texorpdfstring{g\+\_\+verbose\+\_\+output}{g\_verbose\_output}}
+{\footnotesize\ttfamily bool g\+\_\+verbose\+\_\+output}
+
+
+
+Verbose output parameter. 
+

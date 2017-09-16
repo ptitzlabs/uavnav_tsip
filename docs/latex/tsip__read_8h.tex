@@ -1,0 +1,164 @@
+\hypertarget{tsip__read_8h}{}\section{tsip\+\_\+read.\+h File Reference}
+\label{tsip__read_8h}\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+
+
+Header containing the testing functions. These functions are designed to simulate the U\+AV parser and the C\+OM interface.  
+
+
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}util.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdbool.\+h\char`\"{}}\newline
+Include dependency graph for tsip\+\_\+read.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{tsip__read_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{tsip__read_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}{D\+LE}~0x10
+\begin{DoxyCompactList}\small\item\em D\+LE flag. \end{DoxyCompactList}\item 
+\#define \hyperlink{tsip__read_8h_af02558e983dd26832a852bf186ed6726}{E\+TX}~0x03
+\begin{DoxyCompactList}\small\item\em E\+TX flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{tsip__read_8h_ac21803ff4ef3330e13f027597975d26f}{uavn\+Com\+Read} (uint8\+\_\+t $\ast$const buffer, const uint32\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Read received raw data from C\+OM port. \end{DoxyCompactList}\item 
+void \hyperlink{tsip__read_8h_aaf187111fc27885f025120a9bf69de0d}{Parse\+Tsip\+Data} (const uint8\+\_\+t $\ast$const buffer, const uint32\+\_\+t number\+Of\+Bytes)
+\begin{DoxyCompactList}\small\item\em Parse a T\+S\+IP data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char $\ast$ \hyperlink{tsip__read_8h_a5e287a26406318ae22f91b2186e093a1}{g\+\_\+test\+\_\+data}
+\begin{DoxyCompactList}\small\item\em Test data array. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{tsip__read_8h_aa0982aa6ad6c582eac44366139eec768}{g\+\_\+test\+\_\+data\+\_\+len}
+\begin{DoxyCompactList}\small\item\em Test data length. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{tsip__read_8h_af8a23b978deb1bf1c3e33bc838fecf69}{g\+\_\+test\+\_\+data\+\_\+start}
+\begin{DoxyCompactList}\small\item\em Start of the test data. \end{DoxyCompactList}\item 
+bool \hyperlink{tsip__read_8h_af8fbc191e3a97ad0427003b79f03144e}{g\+\_\+verbose\+\_\+output}
+\begin{DoxyCompactList}\small\item\em Verbose output parameter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header containing the testing functions. These functions are designed to simulate the U\+AV parser and the C\+OM interface. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}\label{tsip__read_8h_add7018db64fb17dd1e4664b4494be0ee}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!D\+LE@{D\+LE}}
+\index{D\+LE@{D\+LE}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{D\+LE}{DLE}}
+{\footnotesize\ttfamily \#define D\+LE~0x10}
+
+
+
+D\+LE flag. 
+
+\mbox{\Hypertarget{tsip__read_8h_af02558e983dd26832a852bf186ed6726}\label{tsip__read_8h_af02558e983dd26832a852bf186ed6726}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!E\+TX@{E\+TX}}
+\index{E\+TX@{E\+TX}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{E\+TX}{ETX}}
+{\footnotesize\ttfamily \#define E\+TX~0x03}
+
+
+
+E\+TX flag. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tsip__read_8h_aaf187111fc27885f025120a9bf69de0d}\label{tsip__read_8h_aaf187111fc27885f025120a9bf69de0d}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!Parse\+Tsip\+Data@{Parse\+Tsip\+Data}}
+\index{Parse\+Tsip\+Data@{Parse\+Tsip\+Data}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{Parse\+Tsip\+Data()}{ParseTsipData()}}
+{\footnotesize\ttfamily void Parse\+Tsip\+Data (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$const}]{buffer,  }\item[{const uint32\+\_\+t}]{number\+Of\+Bytes }\end{DoxyParamCaption})}
+
+
+
+Parse a T\+S\+IP data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em buffer} & Const pointer where data is located. \\
+\hline
+\mbox{\tt in}  & {\em number\+Of\+Bytes} & It is filled with the number bytes in the T\+S\+IP packet. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tsip__read_8h_ac21803ff4ef3330e13f027597975d26f}\label{tsip__read_8h_ac21803ff4ef3330e13f027597975d26f}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!uavn\+Com\+Read@{uavn\+Com\+Read}}
+\index{uavn\+Com\+Read@{uavn\+Com\+Read}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{uavn\+Com\+Read()}{uavnComRead()}}
+{\footnotesize\ttfamily uint32\+\_\+t uavn\+Com\+Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$const}]{buffer,  }\item[{const uint32\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Read received raw data from C\+OM port. 
+
+This is a non-\/blocking read function. This means that only available received data will be served. User may decide to call this function within a loop until the desired amount of data is received.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Pointer to destination buffer where to copy received data. \\
+\hline
+{\em count} & Maximum number of bytes to be read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of read bytes. This value will always be $<$= count. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tsip__read_8h_a5e287a26406318ae22f91b2186e093a1}\label{tsip__read_8h_a5e287a26406318ae22f91b2186e093a1}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!g\+\_\+test\+\_\+data@{g\+\_\+test\+\_\+data}}
+\index{g\+\_\+test\+\_\+data@{g\+\_\+test\+\_\+data}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data}{g\_test\_data}}
+{\footnotesize\ttfamily unsigned char$\ast$ g\+\_\+test\+\_\+data}
+
+
+
+Test data array. 
+
+\mbox{\Hypertarget{tsip__read_8h_aa0982aa6ad6c582eac44366139eec768}\label{tsip__read_8h_aa0982aa6ad6c582eac44366139eec768}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!g\+\_\+test\+\_\+data\+\_\+len@{g\+\_\+test\+\_\+data\+\_\+len}}
+\index{g\+\_\+test\+\_\+data\+\_\+len@{g\+\_\+test\+\_\+data\+\_\+len}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data\+\_\+len}{g\_test\_data\_len}}
+{\footnotesize\ttfamily uint32\+\_\+t g\+\_\+test\+\_\+data\+\_\+len}
+
+
+
+Test data length. 
+
+\mbox{\Hypertarget{tsip__read_8h_af8a23b978deb1bf1c3e33bc838fecf69}\label{tsip__read_8h_af8a23b978deb1bf1c3e33bc838fecf69}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!g\+\_\+test\+\_\+data\+\_\+start@{g\+\_\+test\+\_\+data\+\_\+start}}
+\index{g\+\_\+test\+\_\+data\+\_\+start@{g\+\_\+test\+\_\+data\+\_\+start}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{g\+\_\+test\+\_\+data\+\_\+start}{g\_test\_data\_start}}
+{\footnotesize\ttfamily uint32\+\_\+t g\+\_\+test\+\_\+data\+\_\+start}
+
+
+
+Start of the test data. 
+
+\mbox{\Hypertarget{tsip__read_8h_af8fbc191e3a97ad0427003b79f03144e}\label{tsip__read_8h_af8fbc191e3a97ad0427003b79f03144e}} 
+\index{tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}!g\+\_\+verbose\+\_\+output@{g\+\_\+verbose\+\_\+output}}
+\index{g\+\_\+verbose\+\_\+output@{g\+\_\+verbose\+\_\+output}!tsip\+\_\+read.\+h@{tsip\+\_\+read.\+h}}
+\subsubsection{\texorpdfstring{g\+\_\+verbose\+\_\+output}{g\_verbose\_output}}
+{\footnotesize\ttfamily bool g\+\_\+verbose\+\_\+output}
+
+
+
+Verbose output parameter. 
+

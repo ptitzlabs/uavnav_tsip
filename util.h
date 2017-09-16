@@ -1,4 +1,7 @@
-
+/** @file util.h
+ * \brief Header containing the utility functions.
+ * Various utility functions, including the CRC checker
+*/
 #ifndef UTIL_H
 #define UTIL_H
 
