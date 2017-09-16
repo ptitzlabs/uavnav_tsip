@@ -87,7 +87,7 @@ The verbose test shows that the packets are interpreted correctly. The timed tes
 
 \snippet tsip_decode.h Setup parameters
 
-The number of threads is defined by the variable N_THREADS. In theory spreading the load across several threads should increase the execution efficiency and reduce the execution times. In practice, a lot of this depends on the hardware architecture. On this machine (Intel(R) Core(TM) i7-3610QM CPU @ 2.30GHz running Debian GNU/Linux) two threads performed slightly faster than a single thread, and the performance started to decrease once the number of threads exceeded 4.
+The number of threads is defined by the variable N_THREADS. In theory spreading the load across several threads should increase the execution efficiency and reduce the execution times. In practice, a lot of this depends on the hardware architecture. On this machine (Intel(R) Core(TM) i7-3610QM CPU @ 2.30GHz running Debian GNU/Linux) two threads performed slightly faster than a single thread, and the performance started to decrease once the number of threads exceeded 4. Among the disadvantages of a threaded approach is that it adds to complexity of the code, and any performance benefits of running separate threads could be negated by the demands of thread management itself.
 
 The BLOCK_SIZE variable specifies the data block size to be processed by a single thread. It was found that larger block size results in a better performance. Which is natural, since it takes less effort to analyze one continuous data block rather than a series of discontinuous ones.
 

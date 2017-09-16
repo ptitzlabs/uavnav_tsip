@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.6.21)  17 SEP 2017 01:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.6.21)  17 SEP 2017 01:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1261,84 +1261,84 @@ Chapter 4.
 File: tsip__decode_8h__incl.pdf Graphic file (type pdf)
 
 <use tsip__decode_8h__incl.pdf>
-Package pdftex.def Info: tsip__decode_8h__incl.pdf used on input line 18.
+Package pdftex.def Info: tsip__decode_8h__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 350.0pt x 213.193pt.
 
 <tsip__decode_8h__dep__incl.pdf, id=450, 166.6225pt x 156.585pt>
 File: tsip__decode_8h__dep__incl.pdf Graphic file (type pdf)
 
 <use tsip__decode_8h__dep__incl.pdf>
-Package pdftex.def Info: tsip__decode_8h__dep__incl.pdf used on input line 26.
+Package pdftex.def Info: tsip__decode_8h__dep__incl.pdf used on input line 24.
 (pdftex.def)             Requested size: 166.0pt x 156.01117pt.
  [9 <./tsip__decode_8h__incl.pdf>]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 29.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 27.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 29.
+(Font)              scaled to size 10.79993pt on input line 27.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 10.79993pt on input line 29.
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 32.
+(Font)              scaled to size 10.79993pt on input line 27.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 32.
+(Font)              scaled to size 8.99994pt on input line 30.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 33.
+(Font)              scaled to size 8.09995pt on input line 31.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 33.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 31.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 33.
+(Font)              scaled to size 8.09995pt on input line 31.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 65.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 63.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 65.
+(Font)              scaled to size 6.29996pt on input line 63.
  [10 <./tsip__decode_8h__dep__incl.pdf>]
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 85.
+(Font)              scaled to size 8.99994pt on input line 83.
  [11]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 190.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 188.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 190.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 188.
  [12]
-Underfull \hbox (badness 10000) detected at line 215
+Underfull \hbox (badness 10000) detected at line 213
 [][][]
  []
 
 [13]
-Underfull \hbox (badness 10000) detected at line 245
+Underfull \hbox (badness 10000) detected at line 243
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 267
+Underfull \hbox (badness 10000) detected at line 265
 [][][]
  []
 
 [14]
-Underfull \hbox (badness 10000) detected at line 295
+Underfull \hbox (badness 10000) detected at line 293
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 331
+Underfull \hbox (badness 10000) detected at line 329
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 348
+Underfull \hbox (badness 10000) detected at line 346
 [][][]
  []
 
 [15]
-Underfull \hbox (badness 10000) detected at line 380
+Underfull \hbox (badness 10000) detected at line 378
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 406
+Underfull \hbox (badness 10000) detected at line 404
 [][][]
  []
 
@@ -1347,21 +1347,21 @@ Underfull \hbox (badness 10000) detected at line 406
 File: tsip__read_8h__incl.pdf Graphic file (type pdf)
 
 <use tsip__read_8h__incl.pdf>
-Package pdftex.def Info: tsip__read_8h__incl.pdf used on input line 16.
+Package pdftex.def Info: tsip__read_8h__incl.pdf used on input line 15.
 (pdftex.def)             Requested size: 258.0pt x 212.02167pt.
 
 <tsip__read_8h__dep__incl.pdf, id=555, 166.6225pt x 212.795pt>
 File: tsip__read_8h__dep__incl.pdf Graphic file (type pdf)
 
 <use tsip__read_8h__dep__incl.pdf>
-Package pdftex.def Info: tsip__read_8h__dep__incl.pdf used on input line 24.
+Package pdftex.def Info: tsip__read_8h__dep__incl.pdf used on input line 22.
 (pdftex.def)             Requested size: 166.0pt x 212.01518pt.
  [17 <./tsip__read_8h__incl.pdf> <./tsip__read_8h__dep__incl.pdf
 
 pdfTeX warning: pdflatex (file ./tsip__read_8h__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >] [18]
-Underfull \hbox (badness 10000) detected at line 119
+Underfull \hbox (badness 10000) detected at line 117
 [][][]
  []
 
@@ -1370,15 +1370,15 @@ Underfull \hbox (badness 10000) detected at line 119
 File: uavnav__main_8c__incl.pdf Graphic file (type pdf)
 
 <use uavnav__main_8c__incl.pdf>
-Package pdftex.def Info: uavnav__main_8c__incl.pdf used on input line 17.
+Package pdftex.def Info: uavnav__main_8c__incl.pdf used on input line 16.
 (pdftex.def)             Requested size: 350.0pt x 212.76678pt.
  [20 <./uavnav__main_8c__incl.pdf>]
-Underfull \hbox (badness 10000) detected at line 65
+Underfull \hbox (badness 10000) detected at line 64
 [][][]
  []
 
 [21]
-Underfull \hbox (badness 10000) detected at line 93
+Underfull \hbox (badness 10000) detected at line 92
 [][][]
  []
 
@@ -1386,25 +1386,25 @@ Underfull \hbox (badness 10000) detected at line 93
 File: util_8h__incl.pdf Graphic file (type pdf)
 
 <use util_8h__incl.pdf>
-Package pdftex.def Info: util_8h__incl.pdf used on input line 14.
+Package pdftex.def Info: util_8h__incl.pdf used on input line 13.
 (pdftex.def)             Requested size: 128.0pt x 156.01117pt.
 
 <util_8h__dep__incl.pdf, id=637, 166.6225pt x 269.005pt>
 File: util_8h__dep__incl.pdf Graphic file (type pdf)
 
 <use util_8h__dep__incl.pdf>
-Package pdftex.def Info: util_8h__dep__incl.pdf used on input line 22.
+Package pdftex.def Info: util_8h__dep__incl.pdf used on input line 20.
 (pdftex.def)             Requested size: 166.0pt x 268.0192pt.
 
 Underfull \vbox (badness 1248) has occurred while \output is active []
 
  [23 <./util_8h__incl.pdf>] [24 <./util_8h__dep__incl.pdf>]
-Underfull \hbox (badness 10000) detected at line 100
+Underfull \hbox (badness 10000) detected at line 98
 [][][]
  []
 
 [25]
-Underfull \hbox (badness 10000) detected at line 122
+Underfull \hbox (badness 10000) detected at line 120
 [][][]
  []
 
@@ -1443,7 +1443,7 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (34 pages, 208014 bytes).
+Output written on refman.pdf (34 pages, 208234 bytes).
 PDF statistics:
  841 PDF objects out of 1000 (max. 8388607)
  772 compressed objects within 8 object streams

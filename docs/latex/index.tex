@@ -191,7 +191,7 @@ The verbose test shows that the packets are interpreted correctly. The timed tes
 
 \textcolor{preprocessor}{#define MAX\_DATA\_SIZE 256}
 \end{DoxyCodeInclude}
- The number of threads is defined by the variable N\+\_\+\+T\+H\+R\+E\+A\+DS. In theory spreading the load across several threads should increase the execution efficiency and reduce the execution times. In practice, a lot of this depends on the hardware architecture. On this machine (Intel(\+R) Core(\+T\+M) i7-\/3610\+QM C\+PU @ 2.\+30\+G\+Hz running Debian G\+N\+U/\+Linux) two threads performed slightly faster than a single thread, and the performance started to decrease once the number of threads exceeded 4.
+ The number of threads is defined by the variable N\+\_\+\+T\+H\+R\+E\+A\+DS. In theory spreading the load across several threads should increase the execution efficiency and reduce the execution times. In practice, a lot of this depends on the hardware architecture. On this machine (Intel(\+R) Core(\+T\+M) i7-\/3610\+QM C\+PU @ 2.\+30\+G\+Hz running Debian G\+N\+U/\+Linux) two threads performed slightly faster than a single thread, and the performance started to decrease once the number of threads exceeded 4. Among the disadvantages of a threaded approach is that it adds to complexity of the code, and any performance benefits of running separate threads could be negated by the demands of thread management itself.
 
 The B\+L\+O\+C\+K\+\_\+\+S\+I\+ZE variable specifies the data block size to be processed by a single thread. It was found that larger block size results in a better performance. Which is natural, since it takes less effort to analyze one continuous data block rather than a series of discontinuous ones.
 
