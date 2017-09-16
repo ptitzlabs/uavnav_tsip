@@ -1,6 +1,6 @@
 # UAVNAV TSIP
 A decoder for the TSIP protocol.
-#Documentation
+# Documentation
 http://www.antonnaruta.com/uavnav/
-#Installation
+# Installation
 Run the make file or configure using .pro file with QT.
